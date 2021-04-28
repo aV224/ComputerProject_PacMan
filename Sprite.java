@@ -21,16 +21,17 @@ public abstract class Sprite {
      */
     protected int yPos;
     /**
-    * 
+    * speed stores the speed of the sprite
     */
+    protected int speed;
     /**
-     * width stores the width of the sprite
+     * WIDTH stores the width of the sprite
      */
-    private final int width;
+    private final int WIDTH;
     /**
-     * height stores the height of the sprite
+     * HEIGHT stores the height of the sprite
      */
-    private final int height;
+    private final int HEIGHT;
     /**
      * direction stores either 0, 90, 180, or 270 which determines which direction the sprite is facing
      */
@@ -48,8 +49,8 @@ public abstract class Sprite {
         xPos = a;
         yPos = b;
         direction = d;
-        width = w;
-        height = h;
+        WIDTH = w;
+        HEIGHT = h;
         image = i;
     }
     /**
@@ -81,18 +82,32 @@ public abstract class Sprite {
         return yPos;
     }
     /**
+     * gets speed
+     * @return
+     */
+    public int getSpeed() {
+    	return speed;
+    }
+    /**
+     * sets speed
+     * @param speed
+     */
+    public void setSpeed(int speed) {
+    	this.speed = speed;
+    }
+    /**
      * gets the width
      * @return
      */
     public int getWidth(){
-        return width;
+        return WIDTH;
     } 
     /**
      * gets the height
      * @return
      */
     public int getHeight(){
-        return height;
+        return HEIGHT;
     }
     /**
      * displays the sprite. You have to call it in the paintComponent() method in the panel.
@@ -106,6 +121,6 @@ public abstract class Sprite {
      * @return Rectangle
     */
     public Rectangle getBounds() {
-        return new Rectangle(this.xPos, this.yPos, this.width, this.height);
+        return new Rectangle(this.xPos, this.yPos, this.WIDTH, this.HEIGHT);
     }
 }
