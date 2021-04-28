@@ -24,7 +24,7 @@ public abstract class Sprite {
     /**
     * speed stores the speed of the sprite
     */
-    protected int speed;
+    protected int speed = 1;
     /**
      * WIDTH stores the width of the sprite
      */
@@ -58,25 +58,25 @@ public abstract class Sprite {
      * Moves the sprite 1 unit up
     */
     public void moveUp() {
-        this.yPos -= 1;
+        this.yPos -= speed;
     }
     /**
      * Moves the sprite 1 unit down
     */
     public void moveDown() {
-        this.yPos += 1;
+        this.yPos += speed;
     }
     /**
      * Moves the sprite 1 unit right
     */
     public void moveRight() {
-        this.xPos += 1;
+        this.xPos += speed;
     }
     /**
      * Moves the sprite 1 unit left
     */
     public void moveLeft() {
-        this.xPos -= 1;
+        this.xPos -= speed;
     }
     public int getSpeed() {
     	return speed;
