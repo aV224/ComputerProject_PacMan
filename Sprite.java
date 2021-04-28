@@ -1,7 +1,13 @@
+
+/**
+* Sprite is the abstract base class for all sprite contexts
+* @author Aarya Vijayaraghavan
+* @author Aiden Cheong
+*/
+
 import java.awt.image.BufferedImage;
 import java.awt.*;
 public abstract class Sprite {
-    //hey
     /** 
      * image is the image that the sprite will load
      */
@@ -9,23 +15,26 @@ public abstract class Sprite {
     /** 
      * xPos stores the x coordinate of the sprite
      */
-    int xPos;
+    protected int xPos;
     /**
      * yPos stores the y coordinate of the sprite
      */
-    int yPos;
+    protected int yPos;
+    /**
+    * 
+    */
     /**
      * width stores the width of the sprite
      */
-    private int width;
+    private final int width;
     /**
      * height stores the height of the sprite
      */
-    private int height;
+    private final int height;
     /**
      * direction stores either 0, 90, 180, or 270 which determines which direction the sprite is facing
      */
-    int direction;
+    protected int direction;
     /**
      * Constructor for the sprite
      * @param int a
