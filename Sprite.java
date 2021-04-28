@@ -93,7 +93,7 @@ public abstract class Sprite {
     }
     /**
      * Creates a "hitbox" around the sprite
-     * @return
+     * @return Rectangle
     */
     public Rectangle getBounds() {
         return new Rectangle(this.xPos, this.yPos, this.width, this.height);
