@@ -1,6 +1,7 @@
 
 /**
 * Sprite is the abstract base class for all sprite contexts
+* Is an image that can be moved around
 * @author Aarya Vijayaraghavan
 * @author Aiden Cheong
 */
