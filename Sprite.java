@@ -54,15 +54,27 @@ public abstract class Sprite {
         HEIGHT = h;
         image = i;
     }
+    /**
+     * Moves the sprite 1 unit up
+    */
     public void moveUp() {
         this.yPos -= 1;
     }
+    /**
+     * Moves the sprite 1 unit down
+    */
     public void moveDown() {
         this.yPos += 1;
     }
+    /**
+     * Moves the sprite 1 unit right
+    */
     public void moveRight() {
         this.xPos += 1;
     }
+    /**
+     * Moves the sprite 1 unit left
+    */
     public void moveLeft() {
         this.xPos -= 1;
     }
