@@ -24,69 +24,60 @@ public abstract class Sprite {
     /**
     * speed stores the speed of the sprite
     */
-    protected int speed = 1;
+    protected final int speed = 6;
     /**
      * WIDTH stores the width of the sprite
      */
-    private final int WIDTH;
+    private final int WIDTH = 22;
     /**
      * HEIGHT stores the height of the sprite
      */
-    private final int HEIGHT;
+    private final int HEIGHT = 22;
     /**
      * direction stores either 0, 90, 180, or 270 which determines which direction the sprite is facing
      */
     protected int direction;
     /**
      * Constructor for the sprite
-     * @param int a
-     * @param int b
-     * @param int d
-     * @param int w
-     * @ param int h
-     * @param BufferedImage i 
+     * After the correct starting positions are found we shall initialize xPos and yPos with them
      */
-    public Sprite(int a, int b, int d, int w, int h, BufferedImage i) {
-        xPos = a;
-        yPos = b;
-        direction = d;
-        WIDTH = w;
-        HEIGHT = h;
-        image = i;
+    public Sprite() {
+        ;
     }
     /**
-     * Moves the sprite 1 unit up
-    */
-    public void moveUp() {
-        this.yPos -= speed;
+     * sets the x coordinate
+     * @param xPos
+     */
+    public void setX(int xPos){ 
+        this.xPos = xPos;
     }
     /**
-     * Moves the sprite 1 unit down
-    */
-    public void moveDown() {
-        this.yPos += speed;
+     * gets the x coordinate
+     * @return 
+     */
+    public int getX(){
+        return xPos;
     }
     /**
-     * Moves the sprite 1 unit right
-    */
-    public void moveRight() {
-        this.xPos += speed;
+     * sets the y coordinate
+     * @param yPos
+     */
+    public void setY(int yPos){
+        this.yPos = yPos;
     }
     /**
-     * Moves the sprite 1 unit left
-    */
-    public void moveLeft() {
-        this.xPos -= speed;
+     * gets the y coordinate
+     * @return
+     */
+    public int getY(){
+        return yPos;
     }
+    /**
+     * gets speed
+     * @return
+     */
     public int getSpeed() {
     	return speed;
-    }
-    /**
-     * sets speed
-     * @param speed
-     */
-    public void setSpeed(int speed) {
-    	this.speed = speed;
     }
     /**
      * gets the width
@@ -103,9 +94,52 @@ public abstract class Sprite {
         return HEIGHT;
     }
     /**
+     * Moves the sprite up
+    */
+    public void moveUp() {
+        turnLeft();
+    }
+    /**
+     * Moves the sprite down
+    */
+    public void moveDown() {
+        turnLeft();
+    }
+    /**
+     * Moves the sprite right
+    */
+    public void moveRight() {
+        turnRight();
+    }
+    /**
+     * Moves the sprite left
+    */
+    public void moveLeft() {
+        turnLeft();
+    }
+    /**
+     * Turns left
+    */
+    public void turnLeft() {
+        ;
+    }
+    /**
+     * Turns right
+    */
+    public void turnRight() {
+    	;
+    }
+    /**
+     * Moves the sprite 1 unit left
+    */
+    public void turnAround() {
+        turnLeft();
+    }
+    /**
      * displays the sprite. You have to call it in the paintComponent() method in the panel.
      * @param g
      */
+    
     public void display(Graphics g) {
         g.drawImage(this.image, xPos, yPos, null);
     }
