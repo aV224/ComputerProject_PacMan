@@ -91,7 +91,10 @@ public abstract class Sprite {
     public void display(Graphics g) {
         g.drawImage(this.image, xPos, yPos, null);
     }
-
+    /**
+     * Creates a "hitbox" around the sprite
+     * @return
+    */
     public Rectangle getBounds() {
         return new Rectangle(this.xPos, this.yPos, this.width, this.height);
     }
