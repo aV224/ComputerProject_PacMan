@@ -32,7 +32,7 @@ public abstract class Sprite {
      * @param int d
      * @param int w
      * @ param int h
-     * @param BufferedImage i
+     * @param BufferedImage i 
      */
     public Sprite(int a, int b, int d, int w, int h, BufferedImage i) {
         xPos = a;
