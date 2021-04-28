@@ -54,38 +54,18 @@ public abstract class Sprite {
         HEIGHT = h;
         image = i;
     }
-    /**
-     * sets the x coordinate
-     * @param xPos
-     */
-    public void setX(int xPos){ 
-        this.xPos = xPos;
+    public void moveUp() {
+        this.yPos -= 1;
     }
-    /**
-     * gets the x coordinate
-     * @return 
-     */
-    public int getX(){
-        return xPos;
+    public void moveDown() {
+        this.yPos += 1;
     }
-    /**
-     * sets the y coordinate
-     * @param yPos
-     */
-    public void setY(int yPos){
-        this.yPos = yPos;
+    public void moveRight() {
+        this.xPos += 1;
     }
-    /**
-     * gets the y coordinate
-     * @return
-     */
-    public int getY(){
-        return yPos;
+    public void moveLeft() {
+        this.xPos -= 1;
     }
-    /**
-     * gets speed
-     * @return
-     */
     public int getSpeed() {
     	return speed;
     }
