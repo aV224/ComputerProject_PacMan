@@ -28,11 +28,11 @@ public class Sprite {
     /**
      * WIDTH stores the width of the sprite
      */
-    private final int WIDTH = 22;
+    private int WIDTH;
     /**
      * HEIGHT stores the height of the sprite
      */
-    private final int HEIGHT = 22;
+    private int HEIGHT;
     /**
      * direction stores either 0, 90, 180, or 270 which determines which direction the sprite is facing
      */
@@ -41,15 +41,19 @@ public class Sprite {
      * Constructor for the sprite
      * After the correct starting positions are found we shall initialize xPos and yPos with them
      */
-    public Sprite() {
-        ;
+    public Sprite(int x, int y, int w, int h, BufferedImage i) {
+        xPos = x;
+        yPos = y;
+        WIDTH = w;
+        HEIGHT = h;
+        image = i;
     }
     /**
      * sets the x coordinate
-     * @param xPos
+     * @param x
      */
-    public void setX(int xPos){ 
-        this.xPos = xPos;
+    public void setX(int x){ 
+        this.xPos = x;
     }
     /**
      * gets the x coordinate
@@ -60,10 +64,10 @@ public class Sprite {
     }
     /**
      * sets the y coordinate
-     * @param yPos
+     * @param y
      */
-    public void setY(int yPos){
-        this.yPos = yPos;
+    public void setY(int y){
+        this.yPos = y;
     }
     /**
      * gets the y coordinate
@@ -97,49 +101,36 @@ public class Sprite {
      * Moves the sprite up
     */
     public void moveUp() {
-        turnLeft();
+        yPos -= 1;
     }
     /**
      * Moves the sprite down
     */
     public void moveDown() {
-        turnLeft();
+        yPos += 1;
     }
     /**
      * Moves the sprite right
     */
     public void moveRight() {
-        turnRight();
+        xPos += 1;
     }
     /**
      * Moves the sprite left
     */
     public void moveLeft() {
-        turnLeft();
+        xPos -= 1;
     }
     /**
-     * Turns left
+     * Rotates the sprite image
     */
-    public void turnLeft() {
-        ;
-    }
-    /**
-     * Turns right
-    */
-    public void turnRight() {
-    	;
-    }
-    /**
-     * Moves the sprite 1 unit left
-    */
-    public void turnAround() {
-        turnLeft();
+    public void turn(int d) {
+        direction = d;
     }
     /**
      * displays the sprite. You have to call it in the paintComponent() method in the panel.
      * @param g
-     */
-    
+     */    
     public void display(Graphics g) {
         g.drawImage(this.image, xPos, yPos, null);
     }
