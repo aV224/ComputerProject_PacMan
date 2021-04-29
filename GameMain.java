@@ -54,7 +54,7 @@
       // An array consisting of the states of all powerups; 1 is uneaten, 0 is uneaten.
       private int[] bigDotIsEaten;
       
-      // Poin containing location of the bonus item.
+      // Point containing location of the bonus item.
       private Point bonusLoc;
       
       // The variable which stores the state of the bonus item; 1 for uneaten and showing, 0 for uneaten and not showing, and -1 for eaten.
@@ -99,6 +99,7 @@
       
       private boolean checkCollision(Sprite a, Sprite b) 
       {
+        // check for retangular hitbox collision between two sprites
         return false;
       }
       
@@ -244,13 +245,13 @@
       */
       private class PlayerKeyListener implements KeyListener {
          public void keyPressed(KeyEvent e) {
-             // stuff
+             // action 1
          }
          public void keyReleased(KeyEvent e) {
-             // more stuff
+             // action 2
          }
          public void keyTyped(KeyEvent e) {
-             // more stuff
+             // action 3
          }
       }
 
