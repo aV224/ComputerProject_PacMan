@@ -1,3 +1,9 @@
+/**
+* PacMan is the user's in-game character
+* @author Aarya Vijayaraghavan
+*
+*/
+
 import java.awt.image.BufferedImage;
 public class Pacman extends Sprite {
     /**
