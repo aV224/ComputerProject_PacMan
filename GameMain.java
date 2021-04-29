@@ -1,11 +1,10 @@
    /**
    * GameMain manipulates data and controls all panels, including those of the menus and the game
-   * 
-   *
+   * @author Max Wang
    */
    
    /* 
-   * imports
+   * Imports
    * Swing GUI
    * Border Classes for Swing
    * Abstract Window Toolkit
