@@ -8,14 +8,20 @@
    * Swing GUI
    * Border Classes for Swing
    * Abstract Window Toolkit
+   * Event
+   * KeyEvent
    * BufferedImage
-   * File Class
+   * Point
+   * File
    */
    
    import javax.swing.*;
    import javax.swing.border.*;
    import java.awt.*;
+   import java.awt.event.*;
+   import java.awt.event.KeyEvent;
    import java.awt.image.BufferedImage;
+   import java.awt.Point.*;
    import java.io.File;
    
    
@@ -36,78 +42,216 @@
       // An array consisting of the coordinate locations of all wall tiles. 
       private Point[] wallArray;
       
+      // An array consisting of the coordinate locations of all dots.
+      private Point[] dotArray;
+      
+      // An array consisting of the states of all dots; 1 is uneaten, 0 is uneaten.
+      private boolean[] dotIsEaten;
+      
+      // An array consisting of the coordinate locations of all powerups.
+      private Point[] bigDotArray;
+      
+      // An array consisting of the states of all powerups; 1 is uneaten, 0 is uneaten.
+      private int[] bigDotIsEaten;
+      
+      // Poin containing location of the bonus item.
+      private Point bonusLoc;
+      
+      // The variable which stores the state of the bonus item; 1 for uneaten and showing, 0 for uneaten and not showing, and -1 for eaten.
+      private int bonusItem = 0;
+      
       // The variable which remembers the level the game is on; positive values are used for levels, zero is used while not in game.
       private int currentLevel = 0;
       
-      public static void main(String[] args) 
+      // Final image drawn to screen every frame.
+      private BufferedImage mainImage;
+      
+      // A BufferedImage containing all tiles combined into one image file.
+      private BufferedImage graphicsData;
+      
+      // A BufferedImage used to store image data for singular tiles used in the final display.
+      private BufferedImage tile;
+      
+      // Graphics object for mainImage.
+      private Graphics graphics;
+      
+      /**
+      * Instantiates and customizes mainPanel, and begins the program at the main menu.
+      */
+      
+      public void main(String[] args) 
       {
-         /**
-         * Instantiates and customizes mainPanel, and begins the program at the main menu.
-         */
-         changeScreen(MAIN_MENU);
+         setup();
       } 
       
-      public static void addToContainer(Container container)
+      /**
+      * Adds object to container when .add is not possible.
+      */
+      
+      public void addToContainer(Container container)
       {
-         /**
-         * Adds object to container when .add is not possible.
-         */
+         // adds object
       }
       
-      public static void displayTransition();
+      /**
+      * Checks for whether two objects have coinciding locations.
+      */
+      
+      private boolean checkCollision(Sprite a, Sprite b) 
       {
-         /**
-         * 
-         */
+        return false;
       }
       
-      public static void drawBoard()
+      /**
+      * Renders display during the short time before, between, or after a game level.
+      */
+      
+      public void displayTransition()
       {
-         /**
-         * Draws all necessary objects onto the screen.
-         */
+         // sends to new game or main manu depending on type of transition
       }
       
-      public static void gameUpdate()
+      /**
+      * Updates sprite locations and redraws game board.
+      */
+      
+      public void gameUpdate()
       {
-         /**
-         * Updates sprite locations and redraws game board.
-         */
+         // update all sprites and draws board
       }
       
-      public static void menu()
+      /**
+      * Renders hall of fame.
+      */
+      
+      public void hallOfFame()
       {
-         /**
-         * 
-         */
+         String[] topPlayers = retrieveNames();
+         int[] topScores = retrieveStats();
+         // create a "return to main menu" button and "reset game" button, with main() and reset()
       }
       
-      public static void reset()
+      /**
+      * Renders main menu.
+      */
+      
+      public void menu()
       {
-         /**
-         * Resets all game data and restarts game.
-         */
+         // main menu has 3 buttons
+         // button 1 is "Play Game", calls runGame()
+         // button 2 is "Highscores", calls hallOfFame()
+         // button 3 is "Exit Game", ends program
       }
       
-      public static void retrieveMaze()
+      /**
+      * Resets all game data and restarts game.
+      */
+     
+      public void reset()
       {
-         /**
-         * Parses text file for maze and powerup data.
-         */
+         setup();
       }
       
-      public static void retrieveStats()
+      /**
+      * Parses text file for powerup data.
+      */
+      
+      public Point[] retrieveBigDot()
       {
-         /**
-         * Parses text file for highscores.
-         */
+         Point[] temp = {new Point(), new Point()};
+         return temp;
       }
       
-      public static void runGame(int level)
+      /**
+      * Parses text file for bonus item data.
+      */
+      
+      public Point retrieveBonus()
       {
-         /**
-         * Runs a stage of the game by iterating frames until a game-ending condition is reached.
-         */
+         Point temp = new Point();
+         return temp;
+      }
+      
+      /**
+      * Parses text file for dot data.
+      */
+      
+      public Point[] retrieveDot()
+      {
+         Point[] temp = {new Point(), new Point()};
+         return temp;
+      }
+      
+      /**
+      * Parses text file for maze data.
+      */
+      
+      public Point[] retrieveMaze()
+      {
+         Point[] temp = {new Point(), new Point()};
+         return temp;
+      }
+      
+      /**
+      * Parses text file for highscore name data.
+      */
+       
+      public String[] retrieveNames()
+      {
+         String[] temp = {"ABBY_", "BOB__", "CASSI"};
+         return temp;
+      }
+      
+      /**
+      * Parses text file for highscores.
+      */
+      
+      public int[] retrieveStats()
+      {
+         int[] temp = {1, 2, 3};
+         return temp;
+      }
+      
+      /**
+      * Runs a stage of the game by iterating frames until a game-ending condition is reached.
+      */
+      
+      public void runGame(int level)
+      {
+         // loops gameUpdate() until condition met
+         gameUpdate();
+         displayTransition();
+      }
+      
+      /**
+      * Sets up certain variables before game can start.
+      */
+      
+      public void setup()
+      {
+         wallArray = retrieveMaze();
+         dotArray = retrieveDot();
+         bigDotArray = retrieveBigDot();
          
+         // set dotIsEaten and bigDotIsEaten to arrays of equal size to dotArray and bigDotArray and both filled with zeros
+         
+         bonusLoc = retrieveBonus();
+         menu();
       }
+      
+      /**
+      * Creates a KeyListener which will take keyboard input from the player
+      */
+      private class PlayerKeyListener implements KeyListener {
+         public void keyPressed(KeyEvent e) {
+             // stuff
+         }
+         public void keyReleased(KeyEvent e) {
+             // more stuff
+         }
+         public void keyTyped(KeyEvent e) {
+             // more stuff
+         }
+      }
+
    }
