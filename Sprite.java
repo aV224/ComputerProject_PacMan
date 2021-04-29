@@ -39,7 +39,12 @@ public class Sprite {
     protected int direction;
     /**
      * Constructor for the sprite
-     * After the correct starting positions are found we shall initialize xPos and yPos with them
+     * @param int a
+     * @param int b
+     * @param int d
+     * @param int w
+     * @ param int h
+     * @param BufferedImage i
      */
     public Sprite(int x, int y, int w, int h, BufferedImage i) {
         xPos = x;
