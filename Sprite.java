@@ -8,7 +8,7 @@
 
 import java.awt.image.BufferedImage;
 import java.awt.*;
-public abstract class Sprite {
+public class Sprite {
     /** 
      * image is the image that the sprite will load
      */
