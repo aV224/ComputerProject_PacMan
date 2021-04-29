@@ -1,7 +1,6 @@
 /**
 * Sprite is the abstract base class for all sprite contexts
 * Is an image that can be moved around
-* @author Aarya Vijayaraghavan
 * @author Aiden Cheong
 */
 
@@ -25,13 +24,13 @@ public class Sprite {
     */
     protected final int speed = 6;
     /**
-     * WIDTH stores the width of the sprite
+     * width stores the width of the sprite imagea
      */
-    private int WIDTH;
+    private int width;
     /**
-     * HEIGHT stores the height of the sprite
+     * height stores the height of the sprite image
      */
-    private int HEIGHT;
+    private int height;
     /**
      * direction stores either 0, 90, 180, or 270 which determines which direction the sprite is facing
      */
@@ -48,8 +47,8 @@ public class Sprite {
     public Sprite(int x, int y, int w, int h, BufferedImage i) {
         xPos = x;
         yPos = y;
-        WIDTH = w;
-        HEIGHT = h;
+        width = w;
+        height = h;
         image = i;
     }
     /**
@@ -92,14 +91,14 @@ public class Sprite {
      * @return
      */
     public int getWidth(){
-        return WIDTH;
+        return width;
     } 
     /**
      * gets the height
      * @return
      */
     public int getHeight(){
-        return HEIGHT;
+        return height;
     }
     /**
      * Moves the sprite up
@@ -143,6 +142,6 @@ public class Sprite {
      * @return Rectangle
     */
     public Rectangle getBounds() {
-        return new Rectangle(this.xPos, this.yPos, this.WIDTH, this.HEIGHT);
+        return new Rectangle(this.xPos, this.yPos, this.width, this.height);
     }
 }
