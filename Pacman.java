@@ -1,6 +1,6 @@
 /**
 * PacMan is the user's in-game character
-* @author Aarya Vijayaraghavan
+* @author Aiden Cheong
 *
 */
 
