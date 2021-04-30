@@ -39,9 +39,6 @@ public class Sprite {
      * Constructor for the sprite
      * @param int a
      * @param int b
-     * @param int d
-     * @param int w
-     * @ param int h
      * @param BufferedImage i
      */
     public Sprite(int x, int y, BufferedImage i) {
