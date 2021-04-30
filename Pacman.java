@@ -21,8 +21,8 @@ public class Pacman extends Sprite {
     /**
      * constructor for pacman. (extends Sprite)
      */
-    public Pacman(int a, int b, int d, int w, int h, BufferedImage i) {
-        super(a, b, d, w, h, i);
+    public Pacman(int a, int b, int d, BufferedImage i) {
+        super(a, b, i);
     }
     /**
      * Queues turn for pacman. When the side is clear, it will turn
