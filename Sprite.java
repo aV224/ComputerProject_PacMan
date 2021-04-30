@@ -44,11 +44,11 @@ public class Sprite {
      * @ param int h
      * @param BufferedImage i
      */
-    public Sprite(int x, int y, int w, int h, BufferedImage i) {
+    public Sprite(int x, int y, BufferedImage i) {
         xPos = x;
         yPos = y;
-        width = w;
-        height = h;
+        width = i.getWidth();
+        height = i.getHeight();
         image = i;
     }
     /**
