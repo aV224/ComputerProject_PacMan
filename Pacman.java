@@ -21,7 +21,7 @@ public class Pacman extends Sprite {
     /**
      * constructor for pacman. (extends Sprite)
      */
-    public Pacman(int a, int b, int d, BufferedImage i) {
+    public Pacman(int a, int b, BufferedImage i) {
         super(a, b, i);
     }
     /**
