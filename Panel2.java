@@ -35,25 +35,25 @@ public class Panel2 extends JPanel implements ActionListener, KeyListener {
         }
         return img;
     }
-    public void keyTyped(KeyEvent e) {
-        return;
-    }
-
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_RIGHT) {
+            p.image = p.imageRight;
             xv = 1;
             yv = 0;
         }
         if (key == KeyEvent.VK_LEFT) {
+            p.image = p.imageLeft;
             xv = -1;
             yv = 0;
         }
         if (key == KeyEvent.VK_UP) {
+            p.image = p.imageUp;
             xv = 0;
             yv = -1;
         }
         if (key == KeyEvent.VK_DOWN) {
+            p.image = p.imageDown;
             xv = 0;
             yv = 1;
         }
