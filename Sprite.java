@@ -11,6 +11,10 @@ public class Sprite {
      * image is the image that the sprite will load
      */
     BufferedImage image;
+    BufferedImage imageRight;
+    BufferedImage imageLeft;
+    BufferedImage imageUp;
+    BufferedImage imageDown;
     /** 
      * xPos stores the x coordinate of the sprite
      */
@@ -47,6 +51,11 @@ public class Sprite {
         width = i.getWidth();
         height = i.getHeight();
         image = i;
+        imageRight = image;
+        imageDown = rotateImage(imageRight, 90);
+        imageLeft = rotateImage(imageDown, 90);
+        imageUp = rotateImage(imageLeft, 90);
+        
     }
     /**
      * sets the x coordinate
