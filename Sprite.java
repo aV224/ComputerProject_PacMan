@@ -133,8 +133,22 @@ public class Sprite {
     /**
      * Rotates the sprite image
     */
-    public void turn(int d) {
-        direction = d;
+    public BufferedImage rotateImage(BufferedImage img, double angle) {
+
+        final double rads = Math.toRadians(90);
+        final double sin = Math.abs(Math.sin(rads));
+        final double cos = Math.abs(Math.cos(rads));
+        final int w = (int) Math.floor(img.getWidth() * cos + img.getHeight() * sin);
+        final int h = (int) Math.floor(img.getHeight() * cos + img.getWidth() * sin);
+        final BufferedImage rotatedImage = new BufferedImage(w, h, img.getType());
+        final AffineTransform at = new AffineTransform();
+        at.translate(w / 2, h / 2);
+        at.rotate(rads,0, 0);
+        at.translate(-img.getWidth() / 2, -img.getHeight() / 2);
+        final AffineTransformOp rotateOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        rotateOp.filter(img,rotatedImage);
+
+        return rotatedImage;
     }
     /**
      * displays the sprite. You have to call it in the paintComponent() method in the panel.
