@@ -132,6 +132,8 @@ public class Sprite {
     }
     /**
      * Rotates the sprite image
+     * @param BufferedImage img
+     * @param double angle
     */
     public BufferedImage rotateImage(BufferedImage img, double angle) {
 
