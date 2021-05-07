@@ -153,6 +153,22 @@ public class Sprite {
         return rotatedImage;
     }
     /**
+     * Scales the sprite's image
+     * @param img
+     * @param w
+     * @param h
+     * @return
+     */
+    public BufferedImage scaleImage(BufferedImage img, int w, int h) {
+        Image toolkitImage = img.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+        int width1 = toolkitImage.getWidth(null);
+        int height1 = toolkitImage.getHeight(null);
+
+        // width and height are of the toolkit image
+        BufferedImage newImage = new BufferedImage(width1, height1, BufferedImage.TYPE_INT_ARGB);
+        return newImage;
+    }
+    /**
      * displays the sprite. You have to call it in the paintComponent() method in the panel.
      * @param g
      */    
