@@ -34,7 +34,8 @@ public class Pacman extends Sprite {
      * Moves pacman back to starting point
      */
     public void restart() {
-        //moves pacman back to starting point
+        this.setX(startX);
+        this.setY(startY);
     }
     /**
      * Called when Pacman collides with a ghost. Subtracts a life from Pacman and does the wilting animation
@@ -42,5 +43,11 @@ public class Pacman extends Sprite {
     public void lose() {
         lives -= 1;
         //lose animation
+    }
+    /**
+     *Returns the number of lives Pacman has
+    */
+    public int getLives() {
+        return lives;
     }
 }
