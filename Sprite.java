@@ -182,4 +182,17 @@ public class Sprite {
     public Rectangle getBounds() {
         return new Rectangle(this.xPos, this.yPos, this.width, this.height);
     }
+    /**
+     * Checks if the sprite has collided with another sprite
+     * @param b
+     * @return
+     */
+    public boolean checkCollision(Sprite b) {
+        if (this.getBounds().intersects(b.getBounds())) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
