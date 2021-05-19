@@ -50,4 +50,7 @@ public class Pacman extends Sprite {
     public int getLives() {
         return lives;
     }
+    public void setLives(int x) {
+        lives = x;
+    }
 }
