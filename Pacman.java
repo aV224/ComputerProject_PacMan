@@ -34,6 +34,7 @@ public class Pacman extends Sprite {
      * Moves pacman back to starting point
      */
     public void restart() {
+        this.setDirection(0);
         this.setX(startX);
         this.setY(startY);
     }
