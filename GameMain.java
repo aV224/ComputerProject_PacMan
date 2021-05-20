@@ -4,7 +4,7 @@
    */
    
    /* 
-   * Imports
+   * Import -
    * Swing GUI
    * Border Classes for Swing
    * Abstract Window Toolkit
@@ -12,7 +12,8 @@
    * KeyEvent
    * BufferedImage
    * Point
-   * File
+   * BufferedWriter
+   * FNF
    */
    
    import javax.swing.*;
@@ -22,7 +23,8 @@
    import java.awt.event.KeyEvent;
    import java.awt.image.BufferedImage;
    import java.awt.Point.*;
-   import java.io.File;
+   import java.io.BufferedWriter;
+   import java.io.FileNotFoundException;
    
    
    public class GameMain
@@ -39,50 +41,40 @@
       private static final int LOSE_CARD = -2; 
       private static final int NOT_IN_GAME = 0;
       
-      // An array consisting of the coordinate locations of all wall tiles. 
-      private Point[] wallArray;
-      
-      // An array consisting of the coordinate locations of all dots.
-      private Point[] dotArray;
-      
-      // An array consisting of the states of all dots; 1 is uneaten, 0 is uneaten.
-      private boolean[] dotIsEaten;
-      
-      // An array consisting of the coordinate locations of all powerups.
-      private Point[] bigDotArray;
-      
-      // An array consisting of the states of all powerups; 1 is uneaten, 0 is uneaten.
-      private int[] bigDotIsEaten;
-      
-      // Point containing location of the bonus item.
-      private Point bonusLoc;
-      
-      // The variable which stores the state of the bonus item; 1 for uneaten and showing, 0 for uneaten and not showing, and -1 for eaten.
-      private int bonusItem = 0;
-      
       // The variable which remembers the level the game is on; positive values are used for levels, zero is used while not in game.
       private int currentLevel = 0;
       
-      // Final image drawn to screen every frame.
-      private BufferedImage mainImage;
-      
-      // A BufferedImage containing all tiles combined into one image file.
-      private BufferedImage graphicsData;
-      
-      // A BufferedImage used to store image data for singular tiles used in the final display.
-      private BufferedImage tile;
-      
-      // Graphics object for mainImage.
-      private Graphics graphics;
-      
       /**
-      * Instantiates and customizes mainPanel, and begins the program at the main menu.
+      * Creates a label with large bold letters to be used anywhere
       */
       
-      public void main(String[] args) 
-      {
-         setup();
-      } 
+      private static void addATitle(String text, Container container) {
+         JLabel label = new JLabel(text, SwingConstants.CENTER);
+         label.setAlignmentX(Component.CENTER_ALIGNMENT);
+         label.setFont(new Font("Dialog", Font.BOLD, 20));
+         label.setForeground(Color.black);
+         container.add(label);
+      }
+   
+      /**
+      * Creates a standard label to be used anywhere
+      */
+   
+      private static void addALabel(String text, Container container) {
+         JLabel label = new JLabel(text, SwingConstants.CENTER);
+         label.setAlignmentX(Component.CENTER_ALIGNMENT);
+         label.setFont(new Font("Dialog", Font.PLAIN, 12));
+         label.setForeground(Color.black);
+         container.add(label);
+      }
+      
+      /**
+      * Creates a vertical buffer to be used anywhere
+      */
+      
+      private static void addVerticalBuffer(int height, Container container) {
+         container.add(Box.createRigidArea(new Dimension(200, height)));
+      }
       
       /**
       * Adds object to container when .add is not possible.
@@ -94,21 +86,33 @@
       }
       
       /**
-      * Checks for whether two objects have coinciding locations.
+      * Hub for redrawing screen
       */
       
-      private boolean checkCollision(Sprite a, Sprite b) 
+      private void changeScreen(int screenNum, JFrame frame, int lvl) 
       {
-        // check for retangular hitbox collision between two sprites
-        return false;
+         switch(screenNum) {
+            case 0:
+               menu(frame);
+               break;
+            case 1:
+               displayTransition(lvl, frame);
+               break;
+         }
+         mainPanel.revalidate();
+         mainPanel.repaint();
+         frame.add(mainPanel);
+         frame.setVisible(true);
       }
+
       
       /**
       * Renders display during the short time before, between, or after a game level.
       */
       
-      public void displayTransition()
+      public void displayTransition(int toLevel, JFrame frame)
       {
+         
          // sends to new game or main manu depending on type of transition
       }
       
@@ -120,139 +124,96 @@
       {
          // update all sprites and draws board
       }
-      
-      /**
-      * Renders hall of fame.
-      */
-      
-      public void hallOfFame()
-      {
-         String[] topPlayers = retrieveNames();
-         int[] topScores = retrieveStats();
-         // create a "return to main menu" button and "reset game" button, with main() and reset()
-      }
-      
+  
       /**
       * Renders main menu.
       */
       
-      public void menu()
+      public void menu(JFrame frame)
       {
-         // main menu has 3 buttons
+         // main menu has 2 buttons
          // button 1 is "Play Game", calls runGame()
-         // button 2 is "Highscores", calls hallOfFame()
-         // button 3 is "Exit Game", ends program
-      }
+         // button 2 is "Exit Game", ends program
+         
+         JPanel menuPanel = new JPanel();
+         Dimension bd = new Dimension(100,25);
       
-      /**
-      * Resets all game data and restarts game.
-      */
+         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
+         
+         addVerticalBuffer(15, menuPanel);
+         
+         JLabel titleLabel = new JLabel("PACMAN", SwingConstants.CENTER);
+         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+         titleLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+         titleLabel.setForeground(Color.black);
+         menuPanel.add(titleLabel);
+         
+         addVerticalBuffer(20, menuPanel);
+         
+         JButton gameB = new JButton("Play");
+         gameB.setFont(new Font("Dialog", Font.PLAIN, 15));
+         gameB.setAlignmentX(Component.CENTER_ALIGNMENT);
+         gameB.setMinimumSize(bd);
+         gameB.setPreferredSize(bd);
+         gameB.setMaximumSize(bd);
+         menuPanel.add(gameB);
+         
+         addVerticalBuffer(5, menuPanel);
+         
+         JButton exitB = new JButton("Exit");
+         exitB.setFont(new Font("Dialog", Font.PLAIN, 15));
+         exitB.setAlignmentX(Component.CENTER_ALIGNMENT);
+         exitB.setMinimumSize(bd);
+         exitB.setPreferredSize(bd);
+         exitB.setMaximumSize(bd);
+         menuPanel.add(exitB);
+         
+         addVerticalBuffer(15, menuPanel);
+        
+         mainPanel.add(menuPanel);
+         frame.pack();
+      
+         gameB.addActionListener(
+            new ActionListener() {
+               @Override
+               public void actionPerformed(ActionEvent evt) {
+                  menuPanel.removeAll();
+                  mainPanel.remove(menuPanel);
+                  changeScreen(1, frame, 1);
+               }
+            });
+         
+         exitB.addActionListener(
+            new ActionListener() {
+               @Override
+               public void actionPerformed(ActionEvent evt) {
+                  System.exit(0);
+               }
+            });
+
+      }     
      
-      public void reset()
-      {
-         setup();
-      }
-      
       /**
-      * Parses text file for powerup data.
+      * Runs a stage of the game.
       */
       
-      public Point[] retrieveBigDot()
-      {
-         Point[] temp = {new Point(), new Point()};
-         return temp;
-      }
-      
-      /**
-      * Parses text file for bonus item data.
-      */
-      
-      public Point retrieveBonus()
-      {
-         Point temp = new Point();
-         return temp;
-      }
-      
-      /**
-      * Parses text file for dot data.
-      */
-      
-      public Point[] retrieveDot()
-      {
-         Point[] temp = {new Point(), new Point()};
-         return temp;
-      }
-      
-      /**
-      * Parses text file for maze data.
-      */
-      
-      public Point[] retrieveMaze()
-      {
-         Point[] temp = {new Point(), new Point()};
-         return temp;
-      }
-      
-      /**
-      * Parses text file for highscore name data.
-      */
-       
-      public String[] retrieveNames()
-      {
-         String[] temp = {"ABBY_", "BOB__", "CASSI"};
-         return temp;
-      }
-      
-      /**
-      * Parses text file for highscores.
-      */
-      
-      public int[] retrieveStats()
-      {
-         int[] temp = {1, 2, 3};
-         return temp;
-      }
-      
-      /**
-      * Runs a stage of the game by iterating frames until a game-ending condition is reached.
-      */
-      
-      public void runGame(int level)
+      public void runGame(int level, JFrame frame)
       {
          // loops gameUpdate() until condition met
          gameUpdate();
-         displayTransition();
+         changeScreen(0, frame, 0);
       }
       
       /**
-      * Sets up certain variables before game can start.
+      * Sets up minor things before game can start.
       */
       
-      public void setup()
-      {
-         wallArray = retrieveMaze();
-         dotArray = retrieveDot();
-         bigDotArray = retrieveBigDot();
+      public void setup(JFrame frame)
+      {  
+         mainPanel = new JPanel();
+         frame.add(mainPanel);
          
-         // set dotIsEaten and bigDotIsEaten to arrays of equal size to dotArray and bigDotArray and both filled with zeros
-         
-         bonusLoc = retrieveBonus();
-         menu();
+         mainPanel.add(new JPanel());
+         changeScreen(0, frame, -1);
       }
-      
-      /**
-      * Creates a KeyListener which will take keyboard input from the player
-      */
-      private class PlayerKeyListener implements KeyListener {
-         public void keyPressed(KeyEvent e) {
-             // action 1
-         }
-         public void keyReleased(KeyEvent e) {
-             // action 2
-         }
-         public void keyTyped(KeyEvent e) {
-             // action 3
-         }
-      }
-
    }

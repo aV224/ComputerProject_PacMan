@@ -1,5 +1,5 @@
    /**
-   * GameDriver contains the main method that starts the game.
+   * GameDriver contains the main method that starts the program.
    * @author Max Wang
    */
    
@@ -18,5 +18,10 @@
          /**
          * Instantiates a JFrame and a GameMain; GameMain will modify contents of JFrame.
          */
+         JFrame frame = new JFrame();
+         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         GameMain main = new GameMain();
+         main.setup(frame);
+         frame.setVisible(true);
       }  
    }
