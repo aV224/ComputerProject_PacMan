@@ -20,15 +20,14 @@ public class GamePanel {
       */
       JFrame mainFrame = new JFrame();
       mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      GamePanel mainPanel = new GamePanel();
-      mainPanel.menu(mainFrame);
+      menu(mainFrame);
    }   
     
       /**
       * Renders main menu.
       */
       
-   public void menu(JFrame frame)
+   public static void menu(JFrame frame)
    {
          // main menu has 2 buttons
          // button 1 is "Play Game", calls runGame()
@@ -89,7 +88,7 @@ public class GamePanel {
    * Runs Game
    */ 
    
-   public void startGame(JFrame frame) {
+   public static void startGame(JFrame frame) {
       System.out.println("Starting a game!");
       JFrame pacFrame = new JFrame("Testing Wall");
       PacPanel pPanel = new PacPanel();
