@@ -16,7 +16,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class PacMan extends Sprite {
-
+	/**
+	* wall stores the PacWall object for the game
+	*/
 	private PacWall wall = null;
 	private int pointImage = 0;
 	private int score = 0;
@@ -32,7 +34,10 @@ public class PacMan extends Sprite {
 	private volatile BufferedImage[] imageCurrentArr = null;
 	BufferedImage[] losingImages = new BufferedImage[7];
     private double losingImage = 0;
-
+	/**
+	* Constructor for Pac-Man
+	* @param PacWall wall
+	*/
 	public PacMan(PacWall wall) {
 		xAxis = 20;
 		yAxis = 60;
@@ -45,7 +50,9 @@ public class PacMan extends Sprite {
 	enum actions {
 		KEY_RIGHT, KEY_LEFT, KEY_UP, KEY_DOWN
 	}
-
+	/**
+	*Stores the current action for Pac-Man
+	*/
 	private actions currAction;
 
 	/**
@@ -82,7 +89,11 @@ public class PacMan extends Sprite {
 	public actions getNextAction() {
 		return currAction;
 	}
-
+	/**
+	*Loads a BufferedImage
+	*@param String s
+	*@return BufferedImage img
+	*/
 	public BufferedImage loadImage(String s) {
 		BufferedImage img = null;
 		try {
@@ -93,7 +104,9 @@ public class PacMan extends Sprite {
 		}
 		return img;
 	}
-
+	/**
+	*Creates the images for Pac-Man an adds them to the image arrays
+	*/
 	private void createImages() {
 		for (int i = 0; i < imageRightArr.length; i++) {
 			imageRightArr[i] = loadImage("pacman" + (i + 1) + ".png");
@@ -111,7 +124,11 @@ public class PacMan extends Sprite {
 		imageCurrentArr = imageRightArr;
 		this.currAction = actions.KEY_RIGHT;
 	}
-
+	/**
+	*Rotates the buffered image
+	*@param BufferedImage imgin
+	*@param double angle
+	*/
 	private BufferedImage rotateImage(BufferedImage imgin, double angle) {
 		BufferedImage img = copyImage(imgin);
 		final double rads = Math.toRadians(90);
@@ -129,7 +146,11 @@ public class PacMan extends Sprite {
 
 		return rotatedImage;
 	}
-
+	/**
+	*creates a copy of a BufferedImage
+	*@param BufferedImage image
+	*@return BufferedImage newimg
+	*/
 	private static final BufferedImage copyImage(BufferedImage image) {
 		BufferedImage newimg = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
 		Graphics2D g2d = newimg.createGraphics();
@@ -138,20 +159,29 @@ public class PacMan extends Sprite {
 
 		return newimg;
 	}
-
+	/**
+	*@return score
+	*/
 	public int getScore() {
 		return score;
 	}
-
+	/**
+	*sets the score
+	*@param int score
+	*/
 	public void setScore(int score) {
 		this.score = score;
 	}
-
+	/**
+	*paint method for Pac-Man. Displays it on to the panel
+	*/
 	public void paintPacMan(Graphics2D g2d) {
 		g2d.drawImage(imageCurrentArr[pointImage], xAxis + 5, yAxis + 5, width, height, null);
 		pointImage = ((pointImage + 1) >= imageCurrentArr.length) ? 0 : ++pointImage;
 	}
-
+	/**
+	*Moves pacman right
+	*/
 	public void moveRight() {
 		int tmpvar = 0;
 		int relvar = 0;
@@ -215,7 +245,9 @@ public class PacMan extends Sprite {
 			this.setNextAction(PacMan.actions.KEY_DOWN);
 		}
 	}
-
+	/**
+	*Creates a "hitbox" around Pac-Man
+	*/
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(xAxis, yAxis, 20, 20);
