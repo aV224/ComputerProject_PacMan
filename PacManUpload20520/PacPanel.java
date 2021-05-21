@@ -54,7 +54,9 @@ public class PacPanel extends JPanel implements KeyListener {
 		scorelbl.setForeground(new Color(0, 0, 255));
 		this.add(scorelbl);
 	}
-
+	/**
+	*This is the paint method for all the componenets on the panel including the walls and sprites
+	*/
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -111,7 +113,9 @@ public class PacPanel extends JPanel implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
-
+	/**
+	*When the key is pressed, it will tell pacman to move a certain direction
+	*/
 	@Override
 	public void keyPressed(KeyEvent e) {
 
