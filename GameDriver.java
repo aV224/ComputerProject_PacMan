@@ -23,5 +23,6 @@
          GameMain main = new GameMain();
          main.setup(frame);
          frame.setVisible(true);
+
       }  
    }
