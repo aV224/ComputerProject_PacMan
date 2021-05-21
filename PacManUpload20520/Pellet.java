@@ -21,43 +21,69 @@ public class Pellet {
 		this.xAxis = (x * 20) + 10;
 		this.yAxis = (y * 20) + 10;
 	}
-
+	/**
+	*@return BufferedImage pelletimg
+	*/
 	public BufferedImage getPelletimg() {
 		return pelletimg;
 	}
-
+	/**
+	*Sets the pellet image as a BufferedImage
+	*@param BufferedImage pelletimg
+	*/
 	public void setPelletimg(BufferedImage pelletimg) {
 		this.pelletimg = pelletimg;
 	}
-
+	/**
+	*@return xAxis
+	*/
 	public int getxAxis() {
 		return xAxis;
 	}
-
+	/**
+	*Sets the xAxis of the pellet
+	*@param int xAxis
+	*/
 	public void setxAxis(int xAxis) {
 		this.xAxis = xAxis;
 	}
-
+	/**
+	*@return yAxis
+	*/
 	public int getyAxis() {
 		return yAxis;
 	}
-
+	/**
+	*Sets the y-axis of the sprite
+	*@param int yAxis
+	*/
 	public void setyAxis(int yAxis) {
 		this.yAxis = yAxis;
 	}
-
+	/**
+	*@return isEaten
+	*/
 	public boolean isEaten() {
 		return isEaten;
 	}
-
+	/**
+	*Sets the boolean isEaten to a value
+	*@param boolean isEaten
+	*/
 	public void setEaten(boolean isEaten) {
 		this.isEaten = isEaten;
 	}
-
+	/**
+	*Creates a "hitbox" around the pellet for collision detection
+	*@return Rectangle
+	*/
 	public Rectangle getBounds() {
 		return new Rectangle(this.xAxis, this.yAxis, 3, 3);
 	}
-	
+	/**
+	*Checks for a collision with another sprite
+	*@return boolean
+	*/
 	public boolean checkCollision(Sprite b) {
         return this.getBounds().intersects(b.getBounds());
     }
